@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html class="dark" lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Волейбольная форма — AVEASA SPORT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#ca1c1c",
+          "background-light": "#f8f6f6",
+          "background-dark": "#0B0B0B",
+        },
+        fontFamily: {
+          "display": ["Lexend", "Noto Sans", "sans-serif"]
+        },
+        borderRadius: {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+      },
+    },
+  }
+</script>
+<style>
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0B0B0B; }
+  ::-webkit-scrollbar-thumb { background: #ca1c1c; border-radius: 3px; }
+
+  /* Mobile menu */
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+
+  /* Grid pattern */
+  .bg-grid-pattern {
+    background-image: radial-gradient(circle at 2px 2px, rgba(202,28,28,0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Logo glitch */
+  @keyframes glitch {
+    0%, 100% { text-shadow: none; }
+    25% { text-shadow: -2px 0 #ca1c1c; }
+    50% { text-shadow: 2px 0 #ca1c1c; }
+    75% { text-shadow: -1px 0 #ca1c1c; }
+  }
+  .logo-text:hover { animation: glitch 0.3s ease; }
+
+  /* Card hover */
+  .card-hover {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .card-hover:hover { transform: translateY(-4px); }
+
+  /* Portfolio grayscale */
+  .portfolio-item img {
+    transition: transform 0.6s ease, filter 0.6s ease;
+    transform: scale(1.05);
+    filter: grayscale(0.6);
+  }
+  .portfolio-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0);
+  }
+
+  /* Toast */
+  #toast { transition: opacity 0.4s ease, transform 0.4s ease; }
+  #toast.hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ── Image Gallery ── */
+  .thumb-btn.active {
+    border-color: #ca1c1c !important;
+    opacity: 1 !important;
+  }
+  .thumb-btn {
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+
+  /* ── Infinite Carousel ── */
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+
+  /* ── Step connector ── */
+  .step-connector {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    z-index: 0;
+  }
+
+  /* Form focus */
+  input:focus, textarea:focus, select:focus {
+    border-color: #ca1c1c !important;
+    box-shadow: 0 0 0 1px #ca1c1c;
+    outline: none;
+  }
+
+  /* Fade-in reveal */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: fadeInUp 0.7s ease forwards; }
+
+  /* Breadcrumb separator */
+  .breadcrumb-sep::before {
+    content: '/';
+    color: rgba(255,255,255,0.3);
+    margin: 0 8px;
+  }
+</style>
+</head>
+<body class="bg-background-dark text-slate-100 font-display selection:bg-primary selection:text-white overflow-x-hidden">
+
+<!-- Toast -->
+<div id="toast" class="hidden fixed bottom-8 right-8 z-[9999] bg-primary text-white px-6 py-4 rounded-sm shadow-2xl flex items-center gap-3 font-bold text-sm">
+  <span class="material-symbols-outlined text-xl">check_circle</span>
+  <span id="toast-msg">Заявка отправлена! Мы свяжемся с вами.</span>
+</div>
+
+<div class="relative flex min-h-screen w-full flex-col">
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 z-50 w-full border-b border-white/10 bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="size-8 bg-primary flex items-center justify-center rounded-sm shadow-[0_0_15px_rgba(202,28,28,0.5)]">
+          <span class="material-symbols-outlined text-white text-xl">bolt</span>
+        </div>
+        <h2 class="logo-text text-white text-xl font-black tracking-tighter italic">AVEASA <span class="text-primary">SPORT</span></h2>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors relative group" href="index.html#catalog">
+          Каталог
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors relative group" href="index.html#design">
+          Дизайн
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors relative group" href="index.html#process">
+          Процесс
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors relative group" href="index.html#reviews">
+          Отзывы
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors relative group" href="index.html#contacts">
+          Контакты
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300"></span>
+        </a>
+      </nav>
+
+      <!-- CTA + Burger -->
+      <div class="flex items-center gap-4">
+        <a href="#cta-consult" class="bg-primary hover:bg-red-700 text-white text-sm font-bold py-2 px-6 rounded transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(202,28,28,0.3)]">
+          ЗАКАЗАТЬ
+        </a>
+        <button id="burger-btn" class="md:hidden text-white" aria-label="Открыть меню">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden flex-col gap-4 pt-6 pb-4 px-2 border-t border-white/10 mt-4">
+      <a href="index.html#catalog" class="mobile-link text-white/80 hover:text-primary font-medium py-2 text-lg transition-colors">Каталог</a>
+      <a href="index.html#design" class="mobile-link text-white/80 hover:text-primary font-medium py-2 text-lg transition-colors">Дизайн</a>
+      <a href="index.html#process" class="mobile-link text-white/80 hover:text-primary font-medium py-2 text-lg transition-colors">Процесс</a>
+      <a href="index.html#reviews" class="mobile-link text-white/80 hover:text-primary font-medium py-2 text-lg transition-colors">Отзывы</a>
+      <a href="index.html#contacts" class="mobile-link text-white/80 hover:text-primary font-medium py-2 text-lg transition-colors">Контакты</a>
+    </div>
+  </header>
+
+  <main class="flex-1 pt-20">
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 1 — PRODUCT HERO
+    ═══════════════════════════════════════ -->
+    <section class="py-16 lg:py-24 bg-background-dark relative overflow-hidden">
+      <div class="bg-grid-pattern absolute inset-0 opacity-20 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-20 relative z-10">
+
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center text-xs font-bold uppercase tracking-widest mb-10">
+          <a href="index.html" class="text-white/40 hover:text-primary transition-colors">Главная</a>
+          <span class="breadcrumb-sep text-white/40">Каталог</span>
+          <span class="breadcrumb-sep text-primary">Волейбольная форма</span>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+          <!-- LEFT — Image Gallery -->
+          <div class="reveal" style="animation-delay:0.1s">
+
+            <!-- Main Image -->
+            <div class="relative aspect-[4/5] overflow-hidden bg-[#0a0a0a] border border-white/10 mb-4">
+              <img id="main-img"
+                   src="img/voleybol.png"
+                   alt="Волейбольная форма Aveasa"
+                   class="w-full h-full object-cover transition-all duration-500"/>
+              <!-- Badge -->
+              <div class="absolute top-4 left-4 bg-primary text-white text-xs font-black px-3 py-1 uppercase tracking-widest italic">
+                Хит сезона
+              </div>
+              <!-- Red vertical accent -->
+              <div class="absolute right-4 top-0 h-full w-0.5 bg-primary/30 hidden lg:block"></div>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="grid grid-cols-4 gap-3">
+              <button class="thumb-btn active aspect-square overflow-hidden border-2 border-primary/80 opacity-100"
+                      onclick="setImg('img/voleybol.png', this)">
+                <img src="img/voleybol.png" alt="Волейбол" class="w-full h-full object-cover"/>
+              </button>
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/futbol.png', this)">
+                <img src="img/futbol.png" alt="Футбол" class="w-full h-full object-cover"/>
+              </button>
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/borba.png', this)">
+                <img src="img/borba.png" alt="Борьба" class="w-full h-full object-cover"/>
+              </button>
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/kostum.png', this)">
+                <img src="img/kostum.png" alt="Костюм" class="w-full h-full object-cover"/>
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT — Product Info -->
+          <div class="reveal" style="animation-delay:0.25s">
+
+            <!-- Category label -->
+            <p class="text-primary text-xs font-bold uppercase tracking-widest mb-3">— Волейбольная экипировка</p>
+
+            <h1 class="text-white text-4xl lg:text-6xl font-black italic uppercase leading-none mb-6">
+              ВОЛЕЙБОЛЬНАЯ <br/><span class="text-primary">ФОРМА</span>
+            </h1>
+
+            <p class="text-white/60 text-lg leading-relaxed mb-8 border-l-2 border-primary pl-5">
+              Профессиональный комплект туника + шорты из итальянских дышащих тканей. Полностью индивидуальный дизайн с логотипом, фирменными цветами и нумерацией. Подходит для любительских и профессиональных команд.
+            </p>
+
+            <!-- Specs -->
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="bg-white/5 border border-white/10 p-4">
+                <p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Ткань</p>
+                <p class="text-white font-bold text-sm">Polyester Pro 160 г/м²</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 p-4">
+                <p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Срок</p>
+                <p class="text-white font-bold text-sm">14–21 рабочий день</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 p-4">
+                <p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Мин. тираж</p>
+                <p class="text-white font-bold text-sm">от 10 комплектов</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 p-4">
+                <p class="text-primary text-xs font-bold uppercase tracking-widest mb-1">Печать</p>
+                <p class="text-white font-bold text-sm">Сублимация / Шелкография</p>
+              </div>
+            </div>
+
+            <!-- Features list -->
+            <ul class="space-y-3 mb-10">
+              <li class="flex items-start gap-3 text-white/80 text-sm">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Дышащий материал — влагоотведение и быстрое высыхание
+              </li>
+              <li class="flex items-start gap-3 text-white/80 text-sm">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Устойчивость цвета — принт не выцветает после стирок
+              </li>
+              <li class="flex items-start gap-3 text-white/80 text-sm">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Размерная сетка XS–4XL, подборка по меркам команды
+              </li>
+              <li class="flex items-start gap-3 text-white/80 text-sm">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Бесплатный макет дизайна при заказе от 20 комплектов
+              </li>
+            </ul>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#cta-consult" class="flex-1 bg-primary text-white font-black text-base py-4 px-8 text-center hover:bg-red-700 transition-all shadow-[0_0_25px_rgba(202,28,28,0.35)] flex items-center justify-center gap-2 group">
+                ПОЛУЧИТЬ КП
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+              <a href="tel:+78005553535" class="flex-1 border border-white/20 text-white font-bold text-base py-4 px-8 text-center hover:bg-white/5 hover:border-white/40 transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-primary">phone_in_talk</span>
+                ПОЗВОНИТЬ
+              </a>
+            </div>
+
+            <!-- Micro trust badges -->
+            <div class="flex flex-wrap items-center gap-6 mt-8 pt-8 border-t border-white/10">
+              <div class="flex items-center gap-2 text-white/40 text-xs">
+                <span class="material-symbols-outlined text-primary text-base">verified_user</span>
+                Гарантия качества
+              </div>
+              <div class="flex items-center gap-2 text-white/40 text-xs">
+                <span class="material-symbols-outlined text-primary text-base">local_shipping</span>
+                Доставка по РФ и СНГ
+              </div>
+              <div class="flex items-center gap-2 text-white/40 text-xs">
+                <span class="material-symbols-outlined text-primary text-base">brush</span>
+                Бесплатный макет
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 2 — НАШИ РАБОТЫ
+    ═══════════════════════════════════════ -->
+    <section class="py-24 bg-background-dark border-t border-white/5" id="works">
+      <div class="max-w-7xl mx-auto px-6 lg:px-20">
+
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+          <div>
+            <p class="text-primary text-xs font-bold uppercase tracking-widest mb-4">— Реализованные проекты</p>
+            <h2 class="text-white text-4xl lg:text-6xl font-black italic uppercase leading-none">
+              НАШИ РАБОТЫ <br/><span class="text-primary">ПО ВОЛЕЙБОЛУ</span>
+            </h2>
+          </div>
+          <p class="text-white/50 max-w-xs leading-relaxed lg:text-right">Каждая форма — отдельная история победы. Смотрите, что мы создали для наших клиентов.</p>
+        </div>
+
+        <!-- Gallery — masonry-like grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+
+          <!-- Big item -->
+          <div class="portfolio-item col-span-2 row-span-2 aspect-[4/5] overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
+            <img class="w-full h-full object-cover" alt="Волейбольная форма — ВК Динамо" src="img/voleybol.png"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <div class="inline-block bg-primary text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-widest mb-2">Волейбол</div>
+              <p class="text-white font-bold text-lg uppercase leading-tight">ВК «Динамо»</p>
+              <p class="text-white/60 text-sm mt-1">24 комплекта · Сублимация</p>
+            </div>
+          </div>
+
+          <!-- Small items -->
+          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
+            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/futbol.png"/>
+            <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-xs uppercase">Альт. цвет</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
+            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/borba.png"/>
+            <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-xs uppercase">Тёмная версия</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
+            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/kostum.png"/>
+            <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-xs uppercase">Разминочный</p>
+            </div>
+          </div>
+
+          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
+            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/voleybol.png" style="object-position: top"/>
+            <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-xs uppercase">Женская версия</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-12 text-center">
+          <a href="index.html#catalog" class="inline-flex items-center gap-2 text-white/60 hover:text-primary text-sm font-bold uppercase tracking-widest transition-colors border-b border-white/10 hover:border-primary pb-1">
+            Смотреть весь каталог
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 3 — CTA КОНСУЛЬТАЦИЯ
+    ═══════════════════════════════════════ -->
+    <section class="py-24 bg-primary relative overflow-hidden" id="cta-consult">
+      <div class="absolute top-0 right-0 w-1/3 h-full bg-black skew-x-12 translate-x-1/2 opacity-20 pointer-events-none"></div>
+      <div class="absolute -left-10 bottom-0 w-64 h-64 rounded-full bg-white/5 pointer-events-none"></div>
+      <div class="absolute top-8 left-1/2 w-0.5 h-16 bg-white/20 pointer-events-none hidden lg:block"></div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-20 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          <!-- Text -->
+          <div class="text-white">
+            <p class="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">— Бесплатно, без обязательств</p>
+            <h2 class="text-5xl lg:text-7xl font-black italic uppercase leading-[0.9] mb-6">
+              ПОЛУЧИТЕ <br/>КОНСУЛЬТАЦИЮ
+            </h2>
+            <p class="text-white/85 text-xl leading-relaxed font-light max-w-md">
+              Расскажите о своём проекте — мы подберём ткань, рассчитаем стоимость и разработаем первый концепт дизайна за <strong class="font-bold">48 часов</strong>.
+            </p>
+            <ul class="mt-8 space-y-3">
+              <li class="flex items-center gap-3 text-white/90 text-sm">
+                <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Персональный менеджер на весь проект
+              </li>
+              <li class="flex items-center gap-3 text-white/90 text-sm">
+                <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Макет дизайна бесплатно при заказе от 20 комплектов
+              </li>
+              <li class="flex items-center gap-3 text-white/90 text-sm">
+                <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+                Ответим в течение 30 минут в рабочее время
+              </li>
+            </ul>
+          </div>
+
+          <!-- Compact form -->
+          <div class="bg-black/30 backdrop-blur-sm border border-white/20 p-8 rounded-sm">
+            <h3 class="text-white text-xl font-black italic mb-6 uppercase">Оставить заявку</h3>
+            <form id="cta-form" class="space-y-4">
+              <div class="space-y-1">
+                <label class="text-white/60 text-xs font-bold uppercase tracking-widest">Имя *</label>
+                <input id="cf-name" type="text" required placeholder="Иван Иванов"
+                       class="w-full bg-white/10 border border-white/20 text-white p-3.5 rounded-sm placeholder-white/30 focus:outline-none transition-all"/>
+              </div>
+              <div class="space-y-1">
+                <label class="text-white/60 text-xs font-bold uppercase tracking-widest">Телефон *</label>
+                <input id="cf-phone" type="tel" required placeholder="+7 (___) ___-__-__"
+                       class="w-full bg-white/10 border border-white/20 text-white p-3.5 rounded-sm placeholder-white/30 focus:outline-none transition-all"/>
+              </div>
+              <div class="space-y-1">
+                <label class="text-white/60 text-xs font-bold uppercase tracking-widest">Количество комплектов</label>
+                <select id="cf-qty" class="w-full bg-white/10 border border-white/20 text-white/80 p-3.5 rounded-sm focus:outline-none transition-all">
+                  <option value="" class="bg-background-dark">Выберите...</option>
+                  <option value="1-10" class="bg-background-dark">1–10 комплектов</option>
+                  <option value="11-20" class="bg-background-dark">11–20 комплектов</option>
+                  <option value="21-50" class="bg-background-dark">21–50 комплектов</option>
+                  <option value="50+" class="bg-background-dark">Более 50 комплектов</option>
+                </select>
+              </div>
+              <button type="submit"
+                      class="w-full bg-white text-primary font-black py-4 text-base hover:bg-black hover:text-white transition-all shadow-xl flex items-center justify-center gap-2 group mt-2">
+                БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-base">arrow_forward</span>
+              </button>
+              <p class="text-white/30 text-[10px] text-center uppercase tracking-widest">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 4 — ЭТАПЫ ПРОИЗВОДСТВА
+    ═══════════════════════════════════════ -->
+    <section class="py-24 bg-background-dark relative overflow-hidden" id="production">
+      <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-20 relative z-10">
+
+        <div class="text-center mb-20">
+          <p class="text-primary text-xs font-bold uppercase tracking-widest mb-4">— Как мы создаём вашу форму</p>
+          <h2 class="text-white text-4xl lg:text-6xl font-black italic uppercase">ЭТАПЫ ПРОИЗВОДСТВА</h2>
+          <p class="text-white/50 mt-4 max-w-xl mx-auto text-lg">Полный цикл — от вашей идеи до готового комплекта на руках команды.</p>
+        </div>
+
+        <!-- Steps - 5 steps -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative">
+
+          <!-- Connecting line desktop -->
+          <div class="hidden lg:block absolute top-6 left-[10%] right-[10%] h-0.5 bg-white/8 z-0"></div>
+
+          <!-- Step 1 -->
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="size-12 bg-primary rotate-45 flex items-center justify-center mb-10 shadow-[0_0_25px_rgba(202,28,28,0.5)]">
+              <span class="material-symbols-outlined text-white -rotate-45">forum</span>
+            </div>
+            <div class="bg-primary/10 text-primary text-xs font-black px-2 py-1 mb-3 uppercase tracking-widest">01</div>
+            <h3 class="text-white text-base font-bold mb-3 italic">Брифинг</h3>
+            <p class="text-white/50 text-xs leading-relaxed">Обсуждаем состав, размеры, цвета и пожелания команды</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="size-12 bg-primary rotate-45 flex items-center justify-center mb-10 shadow-[0_0_25px_rgba(202,28,28,0.5)]">
+              <span class="material-symbols-outlined text-white -rotate-45">brush</span>
+            </div>
+            <div class="bg-primary/10 text-primary text-xs font-black px-2 py-1 mb-3 uppercase tracking-widest">02</div>
+            <h3 class="text-white text-base font-bold mb-3 italic">Дизайн-макет</h3>
+            <p class="text-white/50 text-xs leading-relaxed">Создаём полноцветный макет с вашим логотипом за 48 часов</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="size-12 bg-primary rotate-45 flex items-center justify-center mb-10 shadow-[0_0_25px_rgba(202,28,28,0.5)]">
+              <span class="material-symbols-outlined text-white -rotate-45">edit_note</span>
+            </div>
+            <div class="bg-primary/10 text-primary text-xs font-black px-2 py-1 mb-3 uppercase tracking-widest">03</div>
+            <h3 class="text-white text-base font-bold mb-3 italic">Согласование</h3>
+            <p class="text-white/50 text-xs leading-relaxed">Вносим правки до полного утверждения, без ограничений</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="size-12 bg-primary rotate-45 flex items-center justify-center mb-10 shadow-[0_0_25px_rgba(202,28,28,0.5)]">
+              <span class="material-symbols-outlined text-white -rotate-45">factory</span>
+            </div>
+            <div class="bg-primary/10 text-primary text-xs font-black px-2 py-1 mb-3 uppercase tracking-widest">04</div>
+            <h3 class="text-white text-base font-bold mb-3 italic">Пошив</h3>
+            <p class="text-white/50 text-xs leading-relaxed">Производство на собственной фабрике — полный контроль качества</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="size-12 bg-primary rotate-45 flex items-center justify-center mb-10 shadow-[0_0_25px_rgba(202,28,28,0.5)]">
+              <span class="material-symbols-outlined text-white -rotate-45">package_2</span>
+            </div>
+            <div class="bg-primary/10 text-primary text-xs font-black px-2 py-1 mb-3 uppercase tracking-widest">05</div>
+            <h3 class="text-white text-base font-bold mb-3 italic">Доставка</h3>
+            <p class="text-white/50 text-xs leading-relaxed">Бережная упаковка и отправка по России и СНГ</p>
+          </div>
+
+        </div>
+
+        <!-- Timeline bar -->
+        <div class="mt-16 bg-white/5 border border-white/10 p-6 lg:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="text-center">
+            <p class="text-primary text-3xl font-black italic">48ч</p>
+            <p class="text-white/50 text-xs uppercase font-bold tracking-widest mt-1">Срок макета</p>
+          </div>
+          <div class="text-center">
+            <p class="text-primary text-3xl font-black italic">14–21</p>
+            <p class="text-white/50 text-xs uppercase font-bold tracking-widest mt-1">Дней производства</p>
+          </div>
+          <div class="text-center">
+            <p class="text-primary text-3xl font-black italic">∞</p>
+            <p class="text-white/50 text-xs uppercase font-bold tracking-widest mt-1">Правок дизайна</p>
+          </div>
+          <div class="text-center">
+            <p class="text-primary text-3xl font-black italic">100%</p>
+            <p class="text-white/50 text-xs uppercase font-bold tracking-widest mt-1">Контроль качества</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 5 — НАМ ДОВЕРЯЮТ (Carousel)
+    ═══════════════════════════════════════ -->
+    <section class="py-20 bg-black border-y border-white/5 overflow-hidden" id="clients">
+      <div class="max-w-7xl mx-auto px-6 lg:px-20 mb-12 text-center">
+        <p class="text-primary text-xs font-bold uppercase tracking-widest mb-4">— Нам доверяют</p>
+        <h2 class="text-white text-4xl lg:text-5xl font-black italic uppercase">500+ КОМАНД <span class="text-primary">ПО ВСЕЙ СТРАНЕ</span></h2>
+      </div>
+
+      <!-- Infinite Marquee -->
+      <div class="relative overflow-hidden">
+        <!-- Left/right fade -->
+        <div class="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+
+        <div class="marquee-track">
+          <!-- Set 1 -->
+          <div class="flex items-center gap-0">
+            <div class="flex-shrink-0 w-56 h-20 border-x border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_volleyball</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ВК «Динамо»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_soccer</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ФК «Титан»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_basketball</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">БК «Урал»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_martial_arts</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">Клуб «Сибирь»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_hockey</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ХК «Победа»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">emoji_events</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ФК «Атлетик»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_volleyball</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ВК «Заря»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">school</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">Академия МГУ</span>
+            </div>
+          </div>
+          <!-- Set 2 — clone for seamless loop -->
+          <div class="flex items-center gap-0">
+            <div class="flex-shrink-0 w-56 h-20 border-x border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_volleyball</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ВК «Динамо»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_soccer</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ФК «Титан»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_basketball</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">БК «Урал»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_martial_arts</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">Клуб «Сибирь»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_hockey</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ХК «Победа»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">emoji_events</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ФК «Атлетик»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">sports_volleyball</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">ВК «Заря»</span>
+            </div>
+            <div class="flex-shrink-0 w-56 h-20 border-r border-white/10 flex flex-col items-center justify-center px-6 gap-1">
+              <span class="material-symbols-outlined text-primary text-2xl">school</span>
+              <span class="text-white/60 text-xs font-bold uppercase tracking-widest whitespace-nowrap">Академия МГУ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="max-w-7xl mx-auto px-6 lg:px-20 mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center">
+          <p class="text-white text-4xl font-black italic">500+</p>
+          <p class="text-white/40 text-xs uppercase font-bold tracking-widest mt-1">Команд одели</p>
+        </div>
+        <div class="text-center">
+          <p class="text-white text-4xl font-black italic">12+</p>
+          <p class="text-white/40 text-xs uppercase font-bold tracking-widest mt-1">Лет опыта</p>
+        </div>
+        <div class="text-center">
+          <p class="text-white text-4xl font-black italic">23</p>
+          <p class="text-white/40 text-xs uppercase font-bold tracking-widest mt-1">Региона России</p>
+        </div>
+        <div class="text-center">
+          <p class="text-white text-4xl font-black italic">4.9</p>
+          <p class="text-white/40 text-xs uppercase font-bold tracking-widest mt-1">Рейтинг клиентов</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 6 — О КОМПАНИИ
+    ═══════════════════════════════════════ -->
+    <section class="py-24 bg-background-dark border-t border-white/5 relative overflow-hidden" id="about">
+      <div class="absolute right-0 top-0 w-1/2 h-full bg-primary/3 -skew-x-6 translate-x-1/3 pointer-events-none hidden lg:block"></div>
+      <div class="bg-grid-pattern absolute inset-0 opacity-15 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-20 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          <!-- Left — image collage -->
+          <div class="relative">
+            <div class="aspect-[4/3] overflow-hidden bg-[#0a0a0a] border border-white/10">
+              <img src="img/voleybol.png" alt="Производство Aveasa" class="w-full h-full object-cover" style="filter: grayscale(0.2)"/>
+            </div>
+            <!-- Floating card -->
+            <div class="absolute -bottom-6 -right-6 bg-primary p-6 shadow-2xl hidden lg:block">
+              <p class="text-white text-3xl font-black italic">12+</p>
+              <p class="text-white/70 text-xs uppercase font-bold tracking-widest mt-1">Лет на рынке</p>
+            </div>
+            <!-- Red accent line -->
+            <div class="absolute -left-3 top-6 bottom-6 w-0.5 bg-primary hidden lg:block"></div>
+          </div>
+
+          <!-- Right — text -->
+          <div>
+            <p class="text-primary text-xs font-bold uppercase tracking-widest mb-4">— О компании</p>
+            <h2 class="text-white text-4xl lg:text-5xl font-black italic uppercase leading-tight mb-6">
+              AVEASA — <br/>ФОРМА, <span class="text-primary">ДОСТОЙНАЯ</span> <br/>ЧЕМПИОНОВ
+            </h2>
+            <p class="text-white/60 leading-relaxed mb-5 text-base">
+              Мы — российский производитель профессиональной спортивной экипировки с полным циклом производства. Собственная фабрика, дизайн-бюро и служба контроля качества позволяют нам создавать продукт, которому доверяют сотни команд по всей стране.
+            </p>
+            <p class="text-white/60 leading-relaxed mb-8 text-base">
+              С 2012 года мы одеваем волейбольные, футбольные, хоккейные клубы и федерации — от региональных любительских лиг до профессиональных организаций. Наш принцип прост: <span class="text-white font-semibold">ни одна деталь не уходит без контроля.</span>
+            </p>
+
+            <!-- Highlights -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              <div class="flex items-start gap-3">
+                <div class="size-10 bg-primary/10 flex items-center justify-center rounded-sm flex-shrink-0">
+                  <span class="material-symbols-outlined text-primary text-xl">factory</span>
+                </div>
+                <div>
+                  <p class="text-white font-bold text-sm">Собственное производство</p>
+                  <p class="text-white/40 text-xs mt-0.5">Полный цикл в России</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="size-10 bg-primary/10 flex items-center justify-center rounded-sm flex-shrink-0">
+                  <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                </div>
+                <div>
+                  <p class="text-white font-bold text-sm">Итальянские ткани</p>
+                  <p class="text-white/40 text-xs mt-0.5">Сертифицированные материалы</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="size-10 bg-primary/10 flex items-center justify-center rounded-sm flex-shrink-0">
+                  <span class="material-symbols-outlined text-primary text-xl">palette</span>
+                </div>
+                <div>
+                  <p class="text-white font-bold text-sm">Дизайн-бюро</p>
+                  <p class="text-white/40 text-xs mt-0.5">Профессиональные дизайнеры</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="size-10 bg-primary/10 flex items-center justify-center rounded-sm flex-shrink-0">
+                  <span class="material-symbols-outlined text-primary text-xl">support_agent</span>
+                </div>
+                <div>
+                  <p class="text-white font-bold text-sm">Поддержка 7/7</p>
+                  <p class="text-white/40 text-xs mt-0.5">Менеджер всегда на связи</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="#cta-final" class="inline-flex items-center gap-2 border border-primary/40 text-primary hover:bg-primary hover:text-white font-bold py-3 px-8 rounded-sm transition-all duration-300 group text-sm uppercase tracking-wide">
+              Узнать больше о нас
+              <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform text-base">arrow_forward</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         BLOCK 7 — ФИНАЛЬНЫЙ CTA
+    ═══════════════════════════════════════ -->
+    <section class="py-24 bg-background-dark border-t border-white/5 relative overflow-hidden" id="cta-final">
+
+      <!-- Background decoration -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
+      </div>
+
+      <div class="max-w-5xl mx-auto px-6 lg:px-20 relative z-10 text-center">
+
+        <!-- Top accent -->
+        <div class="flex items-center justify-center gap-4 mb-10">
+          <div class="h-px w-20 bg-primary/50"></div>
+          <span class="material-symbols-outlined text-primary text-2xl">bolt</span>
+          <div class="h-px w-20 bg-primary/50"></div>
+        </div>
+
+        <p class="text-primary text-xs font-bold uppercase tracking-widest mb-6">— Начните прямо сейчас</p>
+        <h2 class="text-white text-5xl lg:text-8xl font-black italic uppercase leading-[0.88] mb-8">
+          ГОТОВЫ СОЗДАТЬ <br/><span class="text-primary">ВАШУ ФОРМУ?</span>
+        </h2>
+        <p class="text-white/50 text-xl leading-relaxed max-w-2xl mx-auto mb-12">
+          Оставьте заявку прямо сейчас — и наш менеджер свяжется с вами в течение 30 минут. Бесплатная консультация и расчёт стоимости без обязательств.
+        </p>
+
+        <!-- Big CTA buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <a href="#cta-consult"
+             class="bg-primary text-white font-black text-xl py-5 px-14 hover:bg-red-700 transition-all shadow-[0_0_40px_rgba(202,28,28,0.4)] hover:shadow-[0_0_60px_rgba(202,28,28,0.6)] flex items-center justify-center gap-3 group transform hover:-translate-y-0.5">
+            ОСТАВИТЬ ЗАЯВКУ
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </a>
+          <a href="tel:+78005553535"
+             class="border-2 border-white/20 text-white font-black text-xl py-5 px-14 hover:bg-white/5 hover:border-white/40 transition-all flex items-center justify-center gap-3">
+            <span class="material-symbols-outlined text-primary">phone_in_talk</span>
+            +7 (800) 555-35-35
+          </a>
+        </div>
+
+        <!-- Trust row -->
+        <div class="flex flex-wrap items-center justify-center gap-8 text-white/30 text-xs uppercase font-bold tracking-widest">
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+            Гарантия качества
+          </span>
+          <span class="text-white/10">·</span>
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">schedule</span>
+            Ответим за 30 мин
+          </span>
+          <span class="text-white/10">·</span>
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">brush</span>
+            Бесплатный макет
+          </span>
+          <span class="text-white/10">·</span>
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">local_shipping</span>
+            Доставка по всей России
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="bg-black py-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-20">
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="size-8 bg-primary flex items-center justify-center rounded-sm">
+              <span class="material-symbols-outlined text-white text-xl">bolt</span>
+            </div>
+            <h2 class="text-white text-lg font-black tracking-tighter italic uppercase">AVEASA <span class="text-primary">SPORT STYLE</span></h2>
+          </div>
+          <p class="text-white/40 text-sm leading-relaxed max-w-xs">
+            Профессиональная спортивная экипировка с агрессивным дизайном для тех, кто стремится к победе.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <p class="text-white/40 text-xs uppercase font-bold tracking-widest mb-4">Навигация</p>
+          <ul class="space-y-3">
+            <li><a href="index.html#catalog" class="text-white/60 hover:text-primary text-sm transition-colors">Каталог</a></li>
+            <li><a href="index.html#design" class="text-white/60 hover:text-primary text-sm transition-colors">Дизайн</a></li>
+            <li><a href="index.html#process" class="text-white/60 hover:text-primary text-sm transition-colors">Процесс</a></li>
+            <li><a href="index.html#reviews" class="text-white/60 hover:text-primary text-sm transition-colors">Отзывы</a></li>
+            <li><a href="index.html#contacts" class="text-white/60 hover:text-primary text-sm transition-colors">Контакты</a></li>
+          </ul>
+        </div>
+
+        <!-- Contacts -->
+        <div>
+          <p class="text-white/40 text-xs uppercase font-bold tracking-widest mb-4">Контакты</p>
+          <ul class="space-y-3">
+            <li><a href="tel:+78005553535" class="text-white/60 hover:text-primary text-sm transition-colors">+7 (800) 555-35-35</a></li>
+            <li><a href="mailto:info@aveasa.ru" class="text-white/60 hover:text-primary text-sm transition-colors">info@aveasa.ru</a></li>
+            <li><span class="text-white/60 text-sm">Москва, ул. Спортивная, 12</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-white/30 text-sm">© 2024 Aveasa. Все права защищены. Сделано для чемпионов.</p>
+        <div class="flex gap-6">
+          <a class="text-white/40 hover:text-primary transition-colors p-2 rounded-sm hover:bg-primary/10" href="#" aria-label="Telegram">
+            <span class="material-symbols-outlined">send</span>
+          </a>
+          <a class="text-white/40 hover:text-primary transition-colors p-2 rounded-sm hover:bg-primary/10" href="#" aria-label="Email">
+            <span class="material-symbols-outlined">mail</span>
+          </a>
+          <a class="text-white/40 hover:text-primary transition-colors p-2 rounded-sm hover:bg-primary/10" href="#" aria-label="VK">
+            <span class="material-symbols-outlined">rss_feed</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+<script>
+  // ── Mobile Menu ──────────────────────────
+  const burgerBtn = document.getElementById('burger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  burgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    const icon = burgerBtn.querySelector('.material-symbols-outlined');
+    icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      burgerBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+    });
+  });
+
+  // ── Navbar scroll ────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      navbar.classList.add('py-2');
+      navbar.classList.remove('py-4');
+      navbar.style.background = 'rgba(11,11,11,0.97)';
+    } else {
+      navbar.classList.remove('py-2');
+      navbar.classList.add('py-4');
+      navbar.style.background = '';
+    }
+  });
+
+  // ── Toast ────────────────────────────────
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    toast.classList.remove('hidden');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.classList.add('hidden'), 400);
+    }, 4000);
+  }
+
+  // ── Image Gallery ────────────────────────
+  function setImg(src, btn) {
+    document.getElementById('main-img').src = src;
+    document.querySelectorAll('.thumb-btn').forEach(b => {
+      b.classList.remove('active');
+      b.classList.add('opacity-50');
+      b.style.borderColor = 'rgba(255,255,255,0.1)';
+    });
+    btn.classList.add('active');
+    btn.classList.remove('opacity-50');
+  }
+
+  // ── CTA Form ─────────────────────────────
+  document.getElementById('cta-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const phone = document.getElementById('cf-phone').value.trim();
+    if (!name || !phone) {
+      showToast('Пожалуйста, заполните обязательные поля.');
+      return;
+    }
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'ОТПРАВЛЯЕМ...';
+    btn.disabled = true;
+    setTimeout(() => {
+      e.target.reset();
+      btn.innerHTML = 'БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ <span class="material-symbols-outlined">arrow_forward</span>';
+      btn.disabled = false;
+      showToast('Заявка отправлена! Свяжемся с вами в течение 30 минут.');
+    }, 1500);
+  });
+
+  // ── Scroll reveal ────────────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.card-hover, .portfolio-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease';
+    revealObserver.observe(el);
+  });
+</script>
+
+</body>
+</html>
