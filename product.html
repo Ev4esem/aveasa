@@ -229,9 +229,10 @@
             <!-- Main Image -->
             <div class="relative aspect-[4/5] overflow-hidden bg-[#0a0a0a] border border-white/10 mb-4">
               <img id="main-img"
-                   src="img/voleybol.png"
-                   alt="Волейбольная форма Aveasa"
-                   class="w-full h-full object-cover transition-all duration-500"/>
+                   src="img/shark-red-set.png"
+                   alt="Спортивная форма Aveasa"
+                   class="w-full h-full object-cover transition-all duration-500"
+                   onerror="this.src='img/futbol.png'"/>
               <!-- Badge -->
               <div class="absolute top-4 left-4 bg-primary text-white text-xs font-black px-3 py-1 uppercase tracking-widest italic">
                 Хит сезона
@@ -240,23 +241,47 @@
               <div class="absolute right-4 top-0 h-full w-0.5 bg-primary/30 hidden lg:block"></div>
             </div>
 
-            <!-- Thumbnails -->
-            <div class="grid grid-cols-4 gap-3">
+            <!-- Thumbnails — все варианты цветов -->
+            <div class="grid grid-cols-4 gap-2">
+              <!-- Красный комплект (shark) -->
               <button class="thumb-btn active aspect-square overflow-hidden border-2 border-primary/80 opacity-100"
-                      onclick="setImg('img/voleybol.png', this)">
-                <img src="img/voleybol.png" alt="Волейбол" class="w-full h-full object-cover"/>
+                      onclick="setImg('img/shark-red-set.png', this)">
+                <img src="img/shark-red-set.png" alt="Красный комплект" class="w-full h-full object-cover" onerror="this.src='img/futbol.png'"/>
               </button>
+              <!-- Белый комплект -->
               <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/futbol.png', this)">
-                <img src="img/futbol.png" alt="Футбол" class="w-full h-full object-cover"/>
+                      onclick="setImg('img/white-set.png', this)">
+                <img src="img/white-set.png" alt="Белый комплект" class="w-full h-full object-cover" onerror="this.src='img/futbol.png'"/>
               </button>
+              <!-- Красная куртка -->
               <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/borba.png', this)">
-                <img src="img/borba.png" alt="Борьба" class="w-full h-full object-cover"/>
+                      onclick="setImg('img/shark-red-jacket.png', this)">
+                <img src="img/shark-red-jacket.png" alt="Красная куртка" class="w-full h-full object-cover" onerror="this.src='img/kostum.png'"/>
               </button>
+              <!-- Белая куртка -->
               <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/kostum.png', this)">
-                <img src="img/kostum.png" alt="Костюм" class="w-full h-full object-cover"/>
+                      onclick="setImg('img/white-jacket.png', this)">
+                <img src="img/white-jacket.png" alt="Белая куртка" class="w-full h-full object-cover" onerror="this.src='img/kostum.png'"/>
+              </button>
+              <!-- Красная майка (singlet) -->
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/shark-red-singlet.png', this)">
+                <img src="img/shark-red-singlet.png" alt="Красная майка" class="w-full h-full object-cover" onerror="this.src='img/voleybol.png'"/>
+              </button>
+              <!-- Белая майка -->
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/white-singlet.png', this)">
+                <img src="img/white-singlet.png" alt="Белая майка" class="w-full h-full object-cover" onerror="this.src='img/voleybol.png'"/>
+              </button>
+              <!-- Красный борцовский -->
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/red-singlet.png', this)">
+                <img src="img/red-singlet.png" alt="Красный борцовский" class="w-full h-full object-cover" onerror="this.src='img/borba.png'"/>
+              </button>
+              <!-- Белый борцовский -->
+              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
+                      onclick="setImg('img/white-borba.png', this)">
+                <img src="img/white-borba.png" alt="Белый борцовский" class="w-full h-full object-cover" onerror="this.src='img/borba.png'"/>
               </button>
             </div>
           </div>
