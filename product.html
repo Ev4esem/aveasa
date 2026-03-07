@@ -218,7 +218,7 @@
         <nav class="flex items-center text-xs font-bold uppercase tracking-widest mb-10">
           <a href="index.html" class="text-white/40 hover:text-primary transition-colors">Главная</a>
           <span class="breadcrumb-sep text-white/40">Каталог</span>
-          <span class="breadcrumb-sep text-primary">Волейбольная форма</span>
+          <span class="breadcrumb-sep text-primary" id="product-breadcrumb">Волейбольная форма</span>
         </nav>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -241,62 +241,21 @@
               <div class="absolute right-4 top-0 h-full w-0.5 bg-primary/30 hidden lg:block"></div>
             </div>
 
-            <!-- Thumbnails — все варианты цветов -->
-            <div class="grid grid-cols-4 gap-2">
-              <!-- Красный комплект (shark) -->
-              <button class="thumb-btn active aspect-square overflow-hidden border-2 border-primary/80 opacity-100"
-                      onclick="setImg('img/shark-red-set.png', this)">
-                <img src="img/shark-red-set.png" alt="Красный комплект" class="w-full h-full object-cover" onerror="this.src='img/futbol.png'"/>
-              </button>
-              <!-- Белый комплект -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/white-set.png', this)">
-                <img src="img/white-set.png" alt="Белый комплект" class="w-full h-full object-cover" onerror="this.src='img/futbol.png'"/>
-              </button>
-              <!-- Красная куртка -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/shark-red-jacket.png', this)">
-                <img src="img/shark-red-jacket.png" alt="Красная куртка" class="w-full h-full object-cover" onerror="this.src='img/kostum.png'"/>
-              </button>
-              <!-- Белая куртка -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/white-jacket.png', this)">
-                <img src="img/white-jacket.png" alt="Белая куртка" class="w-full h-full object-cover" onerror="this.src='img/kostum.png'"/>
-              </button>
-              <!-- Красная майка (singlet) -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/shark-red-singlet.png', this)">
-                <img src="img/shark-red-singlet.png" alt="Красная майка" class="w-full h-full object-cover" onerror="this.src='img/voleybol.png'"/>
-              </button>
-              <!-- Белая майка -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/white-singlet.png', this)">
-                <img src="img/white-singlet.png" alt="Белая майка" class="w-full h-full object-cover" onerror="this.src='img/voleybol.png'"/>
-              </button>
-              <!-- Красный борцовский -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/red-singlet.png', this)">
-                <img src="img/red-singlet.png" alt="Красный борцовский" class="w-full h-full object-cover" onerror="this.src='img/borba.png'"/>
-              </button>
-              <!-- Белый борцовский -->
-              <button class="thumb-btn aspect-square overflow-hidden border-2 border-white/10 opacity-50"
-                      onclick="setImg('img/white-borba.png', this)">
-                <img src="img/white-borba.png" alt="Белый борцовский" class="w-full h-full object-cover" onerror="this.src='img/borba.png'"/>
-              </button>
-            </div>
+            <!-- Thumbnails — динамически по ?type= -->
+            <div id="thumbs-container" class="grid grid-cols-4 gap-2"></div>
           </div>
 
           <!-- RIGHT — Product Info -->
           <div class="reveal" style="animation-delay:0.25s">
 
             <!-- Category label -->
-            <p class="text-primary text-xs font-bold uppercase tracking-widest mb-3">— Волейбольная экипировка</p>
+            <p id="product-label" class="text-primary text-xs font-bold uppercase tracking-widest mb-3">— Волейбольная экипировка</p>
 
-            <h1 class="text-white text-4xl lg:text-6xl font-black italic uppercase leading-none mb-6">
+            <h1 id="product-title" class="text-white text-4xl lg:text-6xl font-black italic uppercase leading-none mb-6">
               ВОЛЕЙБОЛЬНАЯ <br/><span class="text-primary">ФОРМА</span>
             </h1>
 
-            <p class="text-white/60 text-lg leading-relaxed mb-8 border-l-2 border-primary pl-5">
+            <p id="product-desc" class="text-white/60 text-lg leading-relaxed mb-8 border-l-2 border-primary pl-5">
               Профессиональный комплект туника + шорты из итальянских дышащих тканей. Полностью индивидуальный дизайн с логотипом, фирменными цветами и нумерацией. Подходит для любительских и профессиональных команд.
             </p>
 
@@ -383,58 +342,80 @@
           <div>
             <p class="text-primary text-xs font-bold uppercase tracking-widest mb-4">— Реализованные проекты</p>
             <h2 class="text-white text-4xl lg:text-6xl font-black italic uppercase leading-none">
-              НАШИ РАБОТЫ <br/><span class="text-primary">ПО ВОЛЕЙБОЛУ</span>
+              НАШИ <span class="text-primary">РАБОТЫ</span>
             </h2>
           </div>
-          <p class="text-white/50 max-w-xs leading-relaxed lg:text-right">Каждая форма — отдельная история победы. Смотрите, что мы создали для наших клиентов.</p>
+          <p class="text-white/50 max-w-xs leading-relaxed lg:text-right">Каждая форма — отдельная история победы. Посмотрите, что мы создали для наших клиентов.</p>
         </div>
 
-        <!-- Gallery — masonry-like grid -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <!-- Gallery grid — такой же как на главной странице -->
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3">
 
-          <!-- Big item -->
-          <div class="portfolio-item col-span-2 row-span-2 aspect-[4/5] overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
-            <img class="w-full h-full object-cover" alt="Волейбольная форма — ВК Динамо" src="img/voleybol.png"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <!-- Big item — mannequin white/geo -->
+          <a href="index.html#catalog" class="portfolio-item col-span-2 lg:col-span-1 aspect-[3/4] overflow-hidden relative group cursor-pointer bg-[#111] block">
+            <img class="w-full h-full object-cover object-top" alt="Белая форма — геометрика" src="img/work-white-geo.jpg" onerror="this.src='img/voleybol.png'"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+            <div class="absolute top-4 right-4 size-9 bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <span class="material-symbols-outlined text-white text-base">arrow_forward</span>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               <div class="inline-block bg-primary text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-widest mb-2">Волейбол</div>
-              <p class="text-white font-bold text-lg uppercase leading-tight">ВК «Динамо»</p>
-              <p class="text-white/60 text-sm mt-1">24 комплекта · Сублимация</p>
+              <p class="text-white font-bold text-base uppercase leading-tight">Белая геометрика</p>
+              <p class="text-white/60 text-sm mt-1">20 комплектов · Сублимация</p>
             </div>
-          </div>
+          </a>
 
-          <!-- Small items -->
-          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
-            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/futbol.png"/>
+          <!-- Dark red mannequin -->
+          <a href="index.html#catalog" class="portfolio-item aspect-[3/4] overflow-hidden relative group cursor-pointer bg-[#111] block">
+            <img class="w-full h-full object-cover object-top" alt="Тёмно-красная форма Aveasa" src="img/work-red-dark.jpg" onerror="this.src='img/futbol.png'"/>
             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <p class="text-white font-bold text-xs uppercase">Альт. цвет</p>
+            <div class="absolute top-3 right-3 size-8 bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
             </div>
-          </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-sm uppercase tracking-widest">Футбол</p>
+              <p class="text-white/60 text-xs">Тёмно-красный · 24 компл.</p>
+            </div>
+          </a>
 
-          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
-            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/borba.png"/>
+          <!-- Camo mannequin -->
+          <a href="index.html#catalog" class="portfolio-item aspect-[3/4] overflow-hidden relative group cursor-pointer bg-[#111] block">
+            <img class="w-full h-full object-cover object-top" alt="Камуфляж форма Aveasa" src="img/work-camo.jpg" onerror="this.src='img/kostum.png'"/>
             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <p class="text-white font-bold text-xs uppercase">Тёмная версия</p>
+            <div class="absolute top-3 right-3 size-8 bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
             </div>
-          </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-sm uppercase tracking-widest">Универсал</p>
+              <p class="text-white/60 text-xs">Камуфляж · 30 компл.</p>
+            </div>
+          </a>
 
-          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
-            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/kostum.png"/>
+          <!-- Борьба -->
+          <a href="product.html?type=borba" class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a] block">
+            <img class="w-full h-full object-cover" alt="Борьба красный" src="img/shark-red-singlet.png" onerror="this.src='img/borba.png'"/>
             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <p class="text-white font-bold text-xs uppercase">Разминочный</p>
+            <div class="absolute top-3 right-3 size-8 bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
             </div>
-          </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-sm uppercase tracking-widest">Борьба</p>
+              <p class="text-white/60 text-xs">Красный · Майка + шорты</p>
+            </div>
+          </a>
 
-          <div class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a]">
-            <img class="w-full h-full object-cover" alt="Форма Aveasa" src="img/voleybol.png" style="object-position: top"/>
+          <!-- Костюм -->
+          <a href="product.html?type=kostum" class="portfolio-item aspect-square overflow-hidden relative group cursor-pointer bg-[#0a0a0a] block">
+            <img class="w-full h-full object-cover" alt="Белый костюм" src="img/white-jacket.png" onerror="this.src='img/kostum.png'"/>
             <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-              <p class="text-white font-bold text-xs uppercase">Женская версия</p>
+            <div class="absolute top-3 right-3 size-8 bg-primary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <span class="material-symbols-outlined text-white text-sm">arrow_forward</span>
             </div>
-          </div>
+            <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              <p class="text-white font-bold text-sm uppercase tracking-widest">Костюм</p>
+              <p class="text-white/60 text-xs">Белый · Куртка + шорты</p>
+            </div>
+          </a>
 
         </div>
 
@@ -736,10 +717,10 @@
       <div class="max-w-7xl mx-auto px-6 lg:px-20 relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <!-- Left — image collage -->
+          <!-- Left — production photo -->
           <div class="relative">
             <div class="aspect-[4/3] overflow-hidden bg-[#0a0a0a] border border-white/10">
-              <img src="img/voleybol.png" alt="Производство Aveasa" class="w-full h-full object-cover" style="filter: grayscale(0.2)"/>
+              <img src="img/production.svg" alt="Производство Aveasa Sport" class="w-full h-full object-cover"/>
             </div>
             <!-- Floating card -->
             <div class="absolute -bottom-6 -right-6 bg-primary p-6 shadow-2xl hidden lg:block">
@@ -1006,6 +987,95 @@
     btn.classList.add('active');
     btn.classList.remove('opacity-50');
   }
+
+  // ── Product data by type ──────────────────
+  const PRODUCTS = {
+    futbol: {
+      breadcrumb: 'Футбольная форма',
+      label: '— Футбольная экипировка',
+      titleHTML: 'ФУТБОЛЬНАЯ <br/><span class="text-primary">ФОРМА</span>',
+      desc: 'Профессиональный комплект майка + шорты из дышащего полиэстера. Полностью индивидуальный дизайн с логотипом, фирменными цветами и нумерацией. Подходит для любительских и профессиональных команд.',
+      photos: [
+        { src: 'img/shark-red-set.png', alt: 'Красный комплект', fallback: 'img/futbol.png' },
+        { src: 'img/white-set.png',     alt: 'Белый комплект',   fallback: 'img/futbol.png' },
+      ]
+    },
+    kostum: {
+      breadcrumb: 'Спортивный костюм',
+      label: '— Спортивная экипировка',
+      titleHTML: 'СПОРТИВНЫЙ <br/><span class="text-primary">КОСТЮМ</span>',
+      desc: 'Тренировочный костюм куртка + шорты из влагоотводящих тканей с сублимационной печатью. Индивидуальный дизайн с логотипом и фирменными цветами. Подходит для тренировок и выездных матчей.',
+      photos: [
+        { src: 'img/shark-red-jacket.png', alt: 'Красная куртка', fallback: 'img/kostum.png' },
+        { src: 'img/white-jacket.png',     alt: 'Белая куртка',   fallback: 'img/kostum.png' },
+      ]
+    },
+    voleybol: {
+      breadcrumb: 'Волейбольная форма',
+      label: '— Волейбольная экипировка',
+      titleHTML: 'ВОЛЕЙБОЛЬНАЯ <br/><span class="text-primary">ФОРМА</span>',
+      desc: 'Профессиональный комплект туника + шорты из итальянских дышащих тканей. Полностью индивидуальный дизайн с логотипом, фирменными цветами и нумерацией. Подходит для любительских и профессиональных команд.',
+      photos: [
+        { src: 'img/shark-red-singlet.png', alt: 'Красная туника', fallback: 'img/voleybol.png' },
+        { src: 'img/white-singlet.png',     alt: 'Белая туника',   fallback: 'img/voleybol.png' },
+      ]
+    },
+    borba: {
+      breadcrumb: 'Борцовский комплект',
+      label: '— Борцовская экипировка',
+      titleHTML: 'БОРЦОВСКИЙ <br/><span class="text-primary">КОМПЛЕКТ</span>',
+      desc: 'Профессиональный борцовский комплект майка + шорты из высокопрочной ткани с сублимационной печатью. Идеален для соревнований и тренировок любого уровня.',
+      photos: [
+        { src: 'img/red-singlet.png',  alt: 'Красный комплект', fallback: 'img/borba.png' },
+        { src: 'img/white-borba.png',  alt: 'Белый комплект',   fallback: 'img/borba.png' },
+      ]
+    }
+  };
+
+  // ── Init product page from URL param ─────
+  (function initProduct() {
+    const params = new URLSearchParams(window.location.search);
+    const type   = params.get('type') || 'voleybol';
+    const data   = PRODUCTS[type] || PRODUCTS['voleybol'];
+
+    // Breadcrumb
+    const bc = document.getElementById('product-breadcrumb');
+    if (bc) bc.textContent = data.breadcrumb;
+
+    // Label, title, desc
+    document.getElementById('product-label').textContent = data.label;
+    document.getElementById('product-title').innerHTML   = data.titleHTML;
+    document.getElementById('product-desc').textContent  = data.desc;
+
+    // Build thumbnails
+    const container = document.getElementById('thumbs-container');
+    container.innerHTML = '';
+    data.photos.forEach((photo, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'thumb-btn aspect-square overflow-hidden border-2 ' +
+                      (i === 0 ? 'border-primary/80 opacity-100 active' : 'border-white/10 opacity-50');
+      btn.onclick = function() { setImg(photo.src, this); };
+
+      const img = document.createElement('img');
+      img.src   = photo.src;
+      img.alt   = photo.alt;
+      img.className = 'w-full h-full object-cover';
+      img.onerror   = function() { this.src = photo.fallback; };
+
+      btn.appendChild(img);
+      container.appendChild(btn);
+    });
+
+    // Set main image to first photo
+    const mainImg = document.getElementById('main-img');
+    if (data.photos.length > 0) {
+      mainImg.src = data.photos[0].src;
+      mainImg.onerror = function() { this.src = data.photos[0].fallback; };
+    }
+
+    // Update page title
+    document.title = data.breadcrumb + ' — AVEASA SPORT';
+  })();
 
   // ── CTA Form ─────────────────────────────
   document.getElementById('cta-form').addEventListener('submit', (e) => {

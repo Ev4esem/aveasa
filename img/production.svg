@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- Dark background gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d0d"/>
+      <stop offset="100%" style="stop-color:#1a0a0a"/>
+    </linearGradient>
+    <!-- Red glow -->
+    <radialGradient id="glow1" cx="30%" cy="60%" r="40%">
+      <stop offset="0%" style="stop-color:#ca1c1c;stop-opacity:0.18"/>
+      <stop offset="100%" style="stop-color:#ca1c1c;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="75%" cy="35%" r="35%">
+      <stop offset="0%" style="stop-color:#ca1c1c;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#ca1c1c;stop-opacity:0"/>
+    </radialGradient>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(202,28,28,0.06)" stroke-width="0.5"/>
+    </pattern>
+    <!-- Fabric texture pattern -->
+    <pattern id="fabric" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="4" height="4" fill="rgba(255,255,255,0.03)"/>
+    </pattern>
+    <!-- Machine glow filter -->
+    <filter id="glow-filter">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="900" height="700" fill="url(#bg)"/>
+  <rect width="900" height="700" fill="url(#grid)"/>
+  <rect width="900" height="700" fill="url(#glow1)"/>
+  <rect width="900" height="700" fill="url(#glow2)"/>
+
+  <!-- ── Floor line ── -->
+  <rect x="0" y="520" width="900" height="180" fill="#0a0a0a"/>
+  <rect x="0" y="516" width="900" height="4" fill="#ca1c1c" opacity="0.5"/>
+  <rect x="0" y="516" width="900" height="1" fill="#ca1c1c"/>
+
+  <!-- ── Background pipes / tubes ── -->
+  <rect x="60" y="80" width="8" height="440" fill="#1e1e1e" rx="2"/>
+  <rect x="100" y="120" width="8" height="400" fill="#1a1a1a" rx="2"/>
+  <rect x="60" y="180" width="40" height="8" fill="#1e1e1e" rx="2"/>
+  <rect x="60" y="280" width="40" height="8" fill="#1e1e1e" rx="2"/>
+  <rect x="60" y="380" width="40" height="8" fill="#1e1e1e" rx="2"/>
+  <!-- Right side pipes -->
+  <rect x="800" y="100" width="8" height="420" fill="#1e1e1e" rx="2"/>
+  <rect x="830" y="60" width="8" height="460" fill="#1a1a1a" rx="2"/>
+  <rect x="800" y="200" width="38" height="8" fill="#1e1e1e" rx="2"/>
+  <rect x="800" y="340" width="38" height="8" fill="#1e1e1e" rx="2"/>
+
+  <!-- ── Large printing/sublimation machine — center-left ── -->
+  <!-- Machine body -->
+  <rect x="120" y="290" width="260" height="230" fill="#141414" rx="4" stroke="#2a2a2a" stroke-width="1.5"/>
+  <rect x="120" y="290" width="260" height="10" fill="#1f1f1f" rx="2"/>
+  <!-- Control panel -->
+  <rect x="135" y="310" width="100" height="60" fill="#111" rx="2" stroke="#222" stroke-width="1"/>
+  <!-- Screen glow red -->
+  <rect x="140" y="315" width="90" height="40" fill="#1a0505" rx="1"/>
+  <rect x="140" y="315" width="90" height="40" fill="#ca1c1c" opacity="0.15" rx="1"/>
+  <!-- Screen scanlines effect -->
+  <rect x="140" y="318" width="90" height="1" fill="rgba(202,28,28,0.3)"/>
+  <rect x="140" y="322" width="90" height="1" fill="rgba(202,28,28,0.2)"/>
+  <rect x="140" y="326" width="90" height="1" fill="rgba(202,28,28,0.3)"/>
+  <rect x="140" y="330" width="90" height="1" fill="rgba(202,28,28,0.2)"/>
+  <rect x="140" y="334" width="90" height="1" fill="rgba(202,28,28,0.3)"/>
+  <rect x="140" y="338" width="90" height="1" fill="rgba(202,28,28,0.2)"/>
+  <rect x="140" y="342" width="90" height="1" fill="rgba(202,28,28,0.3)"/>
+  <rect x="140" y="346" width="90" height="1" fill="rgba(202,28,28,0.2)"/>
+  <rect x="140" y="350" width="90" height="1" fill="rgba(202,28,28,0.3)"/>
+  <!-- Indicator lights -->
+  <circle cx="256" cy="325" r="5" fill="#ca1c1c" opacity="0.9" filter="url(#glow-filter)"/>
+  <circle cx="272" cy="325" r="5" fill="#2d6a2d" opacity="0.7"/>
+  <circle cx="288" cy="325" r="5" fill="#ca1c1c" opacity="0.4"/>
+  <!-- Buttons row -->
+  <rect x="250" y="340" width="8" height="6" fill="#222" rx="1"/>
+  <rect x="262" y="340" width="8" height="6" fill="#ca1c1c" opacity="0.7" rx="1"/>
+  <rect x="274" y="340" width="8" height="6" fill="#222" rx="1"/>
+  <rect x="286" y="340" width="8" height="6" fill="#222" rx="1"/>
+
+  <!-- Print roller mechanism -->
+  <rect x="135" y="385" width="230" height="40" fill="#0e0e0e" rx="2" stroke="#2a2a2a" stroke-width="1"/>
+  <ellipse cx="155" cy="405" rx="14" ry="14" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+  <ellipse cx="155" cy="405" rx="7" ry="7" fill="#ca1c1c" opacity="0.7"/>
+  <ellipse cx="345" cy="405" rx="14" ry="14" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+  <ellipse cx="345" cy="405" rx="7" ry="7" fill="#ca1c1c" opacity="0.7"/>
+  <!-- Fabric coming out -->
+  <rect x="175" y="393" width="160" height="24" fill="url(#fabric)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <rect x="175" y="393" width="160" height="24" fill="none" stroke="#333" stroke-width="0.5"/>
+  <!-- Fabric pattern lines -->
+  <line x1="200" y1="393" x2="200" y2="417" stroke="rgba(202,28,28,0.3)" stroke-width="1"/>
+  <line x1="225" y1="393" x2="225" y2="417" stroke="rgba(202,28,28,0.3)" stroke-width="1"/>
+  <line x1="250" y1="393" x2="250" y2="417" stroke="rgba(202,28,28,0.3)" stroke-width="1"/>
+  <line x1="275" y1="393" x2="275" y2="417" stroke="rgba(202,28,28,0.3)" stroke-width="1"/>
+  <line x1="300" y1="393" x2="300" y2="417" stroke="rgba(202,28,28,0.3)" stroke-width="1"/>
+  <line x1="325" y1="393" x2="325" y2="417" stroke="rgba(202,28,28,0.3)" stroke-width="1"/>
+
+  <!-- Fabric roll below -->
+  <ellipse cx="250" cy="480" rx="60" ry="18" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="190" y="435" width="120" height="45" fill="#161616" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="195" y="440" width="110" height="35" fill="#1a1a1a"/>
+  <!-- Fabric color band on roll — red/dark stripe suggesting sport fabric -->
+  <rect x="195" y="445" width="110" height="8" fill="#ca1c1c" opacity="0.4"/>
+  <rect x="195" y="458" width="110" height="4" fill="#ca1c1c" opacity="0.2"/>
+  <line x1="250" y1="480" x2="250" y2="435" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- Machine leg -->
+  <rect x="170" y="520" width="16" height="40" fill="#111" rx="1"/>
+  <rect x="314" y="520" width="16" height="40" fill="#111" rx="1"/>
+
+  <!-- ── Cutting table — center-right ── -->
+  <rect x="430" y="380" width="340" height="20" fill="#1e1e1e" rx="2" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- Table top surface -->
+  <rect x="430" y="340" width="340" height="40" fill="#161616" rx="2" stroke="#252525" stroke-width="1"/>
+  <!-- Grid on table top (cutting mat) -->
+  <line x1="475" y1="340" x2="475" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+  <line x1="520" y1="340" x2="520" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+  <line x1="565" y1="340" x2="565" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+  <line x1="610" y1="340" x2="610" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+  <line x1="655" y1="340" x2="655" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+  <line x1="700" y1="340" x2="700" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+  <line x1="745" y1="340" x2="745" y2="380" stroke="rgba(202,28,28,0.1)" stroke-width="0.5"/>
+
+  <!-- Fabric pattern piece on table (jersey shape outline) -->
+  <path d="M480 345 L540 345 L555 355 L555 375 L480 375 Z" fill="rgba(202,28,28,0.08)" stroke="rgba(202,28,28,0.5)" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <path d="M570 345 L640 345 L640 375 L560 375 L570 355 Z" fill="rgba(202,28,28,0.05)" stroke="rgba(202,28,28,0.3)" stroke-width="1" stroke-dasharray="4,2"/>
+  <!-- Cut lines marker -->
+  <line x1="480" y1="360" x2="556" y2="360" stroke="rgba(255,255,255,0.15)" stroke-width="0.5" stroke-dasharray="2,4"/>
+
+  <!-- Table legs -->
+  <rect x="450" y="400" width="12" height="120" fill="#111" rx="1"/>
+  <rect x="748" y="400" width="12" height="120" fill="#111" rx="1"/>
+  <rect x="450" y="515" width="310" height="5" fill="#1a1a1a" rx="1"/>
+
+  <!-- ── Sewing machine — right area ── -->
+  <rect x="620" y="230" width="180" height="110" fill="#141414" rx="4" stroke="#252525" stroke-width="1.5"/>
+  <!-- Sewing machine arm -->
+  <rect x="660" y="220" width="100" height="20" fill="#1a1a1a" rx="2" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="750" y="220" width="20" height="80" fill="#1a1a1a" rx="2" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- Needle area glow -->
+  <circle cx="760" cy="303" r="4" fill="#ca1c1c" opacity="0.8" filter="url(#glow-filter)"/>
+  <line x1="760" y1="308" x2="760" y2="330" stroke="#ca1c1c" stroke-width="1.5" opacity="0.6"/>
+  <!-- Thread spool -->
+  <ellipse cx="680" cy="237" rx="12" ry="8" fill="#ca1c1c" opacity="0.7"/>
+  <ellipse cx="680" cy="237" rx="8" ry="5" fill="#1a0505"/>
+  <!-- Control buttons -->
+  <circle cx="640" cy="260" r="6" fill="#1f1f1f" stroke="#333" stroke-width="1"/>
+  <circle cx="640" cy="280" r="6" fill="#ca1c1c" opacity="0.8" filter="url(#glow-filter)"/>
+  <circle cx="640" cy="300" r="6" fill="#1f1f1f" stroke="#333" stroke-width="1"/>
+  <!-- Display -->
+  <rect x="655" y="255" width="70" height="30" fill="#0d0d0d" rx="1" stroke="#2a2a2a" stroke-width="1"/>
+  <rect x="658" y="258" width="64" height="24" fill="#0a1a0a" opacity="0.8"/>
+  <text x="668" y="274" font-family="monospace" font-size="9" fill="#2a8f2a" opacity="0.9">ST: RUN</text>
+  <!-- Machine base/table -->
+  <rect x="610" y="336" width="200" height="12" fill="#1a1a1a" rx="1" stroke="#252525" stroke-width="1"/>
+
+  <!-- ── Hanging uniforms rack — background ── -->
+  <!-- Rack bar -->
+  <rect x="150" y="120" width="600" height="6" fill="#222" rx="3"/>
+  <rect x="145" y="108" width="8" height="20" fill="#1a1a1a" rx="1"/>
+  <rect x="747" y="108" width="8" height="20" fill="#1a1a1a" rx="1"/>
+  <!-- Hangers + jerseys — simplified silhouettes -->
+  <!-- Jersey 1 — red -->
+  <path d="M215 126 L215 115 L210 110 L220 110 L215 115" fill="none" stroke="#333" stroke-width="1.5"/>
+  <path d="M200 130 L215 130 L230 130 L236 155 L236 220 L194 220 L194 155 Z" fill="#1a0505" stroke="#ca1c1c" stroke-width="1.5" opacity="0.85"/>
+  <path d="M200 130 L190 150 L200 152 L200 145" fill="#1a0505" stroke="#ca1c1c" stroke-width="1" opacity="0.7"/>
+  <path d="M230 130 L240 150 L230 152 L230 145" fill="#1a0505" stroke="#ca1c1c" stroke-width="1" opacity="0.7"/>
+  <!-- Red stripe detail on jersey -->
+  <line x1="196" y1="170" x2="234" y2="170" stroke="#ca1c1c" stroke-width="2.5" opacity="0.7"/>
+  <line x1="196" y1="176" x2="234" y2="176" stroke="#ca1c1c" stroke-width="1" opacity="0.4"/>
+  <!-- Number placeholder -->
+  <rect x="207" y="185" width="16" height="20" fill="rgba(202,28,28,0.2)" rx="1"/>
+
+  <!-- Jersey 2 — dark -->
+  <path d="M295 126 L295 115 L290 110 L300 110 L295 115" fill="none" stroke="#333" stroke-width="1.5"/>
+  <path d="M280 130 L295 130 L310 130 L316 155 L316 220 L274 220 L274 155 Z" fill="#0f0f0f" stroke="#333" stroke-width="1.5" opacity="0.8"/>
+  <path d="M280 130 L270 150 L280 152 L280 145" fill="#0f0f0f" stroke="#333" stroke-width="1" opacity="0.7"/>
+  <path d="M310 130 L320 150 L310 152 L310 145" fill="#0f0f0f" stroke="#333" stroke-width="1" opacity="0.7"/>
+  <line x1="276" y1="168" x2="314" y2="168" stroke="#555" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- Jersey 3 — white/light -->
+  <path d="M375 126 L375 115 L370 110 L380 110 L375 115" fill="none" stroke="#333" stroke-width="1.5"/>
+  <path d="M360 130 L375 130 L390 130 L396 155 L396 220 L354 220 L354 155 Z" fill="#1a1a1a" stroke="#444" stroke-width="1.5" opacity="0.9"/>
+  <path d="M360 130 L350 150 L360 152 L360 145" fill="#1a1a1a" stroke="#444" stroke-width="1" opacity="0.7"/>
+  <path d="M390 130 L400 150 L390 152 L390 145" fill="#1a1a1a" stroke="#444" stroke-width="1" opacity="0.7"/>
+  <!-- White geometric detail -->
+  <path d="M357 160 L393 160 L393 165 L357 165 Z" fill="rgba(255,255,255,0.15)"/>
+  <path d="M365 165 L385 165 L380 175 L370 175 Z" fill="rgba(202,28,28,0.25)"/>
+
+  <!-- Jersey 4 — red dark -->
+  <path d="M455 126 L455 115 L450 110 L460 110 L455 115" fill="none" stroke="#333" stroke-width="1.5"/>
+  <path d="M440 130 L455 130 L470 130 L476 155 L476 220 L434 220 L434 155 Z" fill="#180303" stroke="#ca1c1c" stroke-width="1.5" opacity="0.8"/>
+  <path d="M440 130 L430 150 L440 152 L440 145" fill="#180303" stroke="#ca1c1c" stroke-width="1" opacity="0.7"/>
+  <path d="M470 130 L480 150 L470 152 L470 145" fill="#180303" stroke="#ca1c1c" stroke-width="1" opacity="0.7"/>
+  <path d="M436 155 L474 155 L474 220 L436 220 Z" fill="rgba(202,28,28,0.08)"/>
+  <line x1="436" y1="165" x2="474" y2="165" stroke="#ca1c1c" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Jersey 5 — lighter -->
+  <path d="M535 126 L535 115 L530 110 L540 110 L535 115" fill="none" stroke="#333" stroke-width="1.5"/>
+  <path d="M520 130 L535 130 L550 130 L556 155 L556 220 L514 220 L514 155 Z" fill="#111" stroke="#2a2a2a" stroke-width="1.5" opacity="0.8"/>
+  <path d="M520 130 L510 150 L520 152 L520 145" fill="#111" stroke="#2a2a2a" stroke-width="1" opacity="0.7"/>
+  <path d="M550 130 L560 150 L550 152 L550 145" fill="#111" stroke="#2a2a2a" stroke-width="1" opacity="0.7"/>
+
+  <!-- Jersey 6 — red bright -->
+  <path d="M615 126 L615 115 L610 110 L620 110 L615 115" fill="none" stroke="#333" stroke-width="1.5"/>
+  <path d="M600 130 L615 130 L630 130 L636 155 L636 220 L594 220 L594 155 Z" fill="#200808" stroke="#ca1c1c" stroke-width="2" opacity="0.9"/>
+  <path d="M600 130 L590 150 L600 152 L600 145" fill="#200808" stroke="#ca1c1c" stroke-width="1.5" opacity="0.8"/>
+  <path d="M630 130 L640 150 L630 152 L630 145" fill="#200808" stroke="#ca1c1c" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="615" cy="180" r="14" fill="rgba(202,28,28,0.15)" stroke="rgba(202,28,28,0.5)" stroke-width="1.5"/>
+  <text x="609" y="185" font-family="sans-serif" font-weight="bold" font-size="11" fill="rgba(202,28,28,0.8)">10</text>
+
+  <!-- ── Heat press machine hint ── -->
+  <rect x="430" y="155" width="140" height="90" fill="#0f0f0f" rx="3" stroke="#252525" stroke-width="1.5"/>
+  <rect x="435" y="160" width="130" height="50" fill="#0d0d0d" rx="2"/>
+  <!-- Press plate glow -->
+  <rect x="438" y="162" width="124" height="45" fill="rgba(202,28,28,0.05)" rx="1"/>
+  <rect x="438" y="162" width="124" height="2" fill="rgba(202,28,28,0.4)"/>
+  <!-- Heat indicator -->
+  <text x="448" y="195" font-family="monospace" font-size="9" fill="rgba(202,28,28,0.6)">TEMP: 210°C</text>
+  <!-- Pressure handle -->
+  <rect x="490" y="145" width="60" height="15" fill="#1a1a1a" rx="3" stroke="#333" stroke-width="1"/>
+  <circle cx="520" cy="152" r="5" fill="#ca1c1c" opacity="0.7" filter="url(#glow-filter)"/>
+  <!-- Status lights -->
+  <circle cx="452" cy="225" r="4" fill="#ca1c1c" opacity="0.9" filter="url(#glow-filter)"/>
+  <circle cx="465" cy="225" r="4" fill="#1f4f1f" opacity="0.8"/>
+  <circle cx="478" cy="225" r="4" fill="#ca1c1c" opacity="0.3"/>
+
+  <!-- ── Steam / heat effect ── -->
+  <path d="M445 155 Q448 148 445 142 Q442 136 445 130" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+  <path d="M460 150 Q464 142 460 134 Q456 126 460 118" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/>
+  <path d="M476 148 Q480 139 476 130 Q472 121 476 112" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
+
+  <!-- ── Ambient light streaks ── -->
+  <line x1="0" y1="200" x2="900" y2="200" stroke="rgba(202,28,28,0.03)" stroke-width="1"/>
+  <line x1="0" y1="400" x2="900" y2="400" stroke="rgba(202,28,28,0.03)" stroke-width="1"/>
+
+  <!-- ── Top ceiling lights ── -->
+  <rect x="200" y="0" width="4" height="40" fill="#1a1a1a"/>
+  <ellipse cx="202" cy="45" rx="20" ry="6" fill="rgba(255,240,220,0.04)"/>
+  <rect x="450" y="0" width="4" height="40" fill="#1a1a1a"/>
+  <ellipse cx="452" cy="45" rx="20" ry="6" fill="rgba(255,240,220,0.04)"/>
+  <rect x="700" y="0" width="4" height="40" fill="#1a1a1a"/>
+  <ellipse cx="702" cy="45" rx="20" ry="6" fill="rgba(255,240,220,0.04)"/>
+
+  <!-- ── AVEASA brand mark overlay (subtle) ── -->
+  <text x="450" y="580" font-family="sans-serif" font-weight="900" font-size="72"
+        fill="none" stroke="rgba(202,28,28,0.07)" stroke-width="1"
+        text-anchor="middle" letter-spacing="8">AVEASA</text>
+  <text x="450" y="618" font-family="sans-serif" font-weight="400" font-size="11"
+        fill="rgba(255,255,255,0.08)" text-anchor="middle" letter-spacing="12">SPORT PRODUCTION</text>
+
+  <!-- ── Bottom red accent ── -->
+  <rect x="0" y="696" width="900" height="4" fill="#ca1c1c" opacity="0.6"/>
+</svg>
