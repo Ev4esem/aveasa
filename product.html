@@ -1077,11 +1077,26 @@
     document.title = data.breadcrumb + ' — AVEASA SPORT';
   })();
 
+  // ── Telegram ──────────────────────────────
+  const TG_TOKEN = '8652568951:AAETd6cQRxUStyiPCntQRh5uSNf6dfcaKvI';
+  const TG_CHAT  = '7278069268';
+  async function sendToTelegram(text) {
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'HTML' })
+      });
+      return res.ok;
+    } catch { return false; }
+  }
+
   // ── CTA Form ─────────────────────────────
-  document.getElementById('cta-form').addEventListener('submit', (e) => {
+  document.getElementById('cta-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('cf-name').value.trim();
+    const name  = document.getElementById('cf-name').value.trim();
     const phone = document.getElementById('cf-phone').value.trim();
+    const qty   = document.getElementById('cf-qty').value;
     if (!name || !phone) {
       showToast('Пожалуйста, заполните обязательные поля.');
       return;
@@ -1089,12 +1104,29 @@
     const btn = e.target.querySelector('button[type="submit"]');
     btn.textContent = 'ОТПРАВЛЯЕМ...';
     btn.disabled = true;
-    setTimeout(() => {
-      e.target.reset();
-      btn.innerHTML = 'БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ <span class="material-symbols-outlined">arrow_forward</span>';
-      btn.disabled = false;
-      showToast('Заявка отправлена! Свяжемся с вами в течение 30 минут.');
-    }, 1500);
+
+    const productNames = { futbol: 'Футбол ⚽', kostum: 'Спортивный костюм 🏃', voleybol: 'Волейбол 🏐', borba: 'Борьба 🥋' };
+    const type        = new URLSearchParams(window.location.search).get('type') || '';
+    const productName = productNames[type] || 'Не указан';
+
+    const text = [
+      '🏆 <b>Новая заявка — AVEASA SPORT</b>',
+      '',
+      `👤 <b>Имя:</b> ${name}`,
+      `📞 <b>Телефон:</b> ${phone}`,
+      `🎽 <b>Товар:</b> ${productName}`,
+      qty ? `📦 <b>Количество:</b> ${qty} комплектов` : '',
+      '',
+      '🌐 Источник: Страница товара'
+    ].filter(Boolean).join('\n');
+
+    const ok = await sendToTelegram(text);
+    e.target.reset();
+    btn.innerHTML = 'БЕСПЛАТНАЯ КОНСУЛЬТАЦИЯ <span class="material-symbols-outlined">arrow_forward</span>';
+    btn.disabled = false;
+    showToast(ok
+      ? 'Заявка отправлена! Свяжемся с вами в течение 30 минут.'
+      : 'Ошибка отправки. Позвоните нам напрямую.');
   });
 
   // ── Scroll reveal ────────────────────────

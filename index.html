@@ -1087,26 +1087,56 @@
     }, 4000);
   }
 
+  // ── Telegram ──────────────────────────────
+  const TG_TOKEN = '8652568951:AAETd6cQRxUStyiPCntQRh5uSNf6dfcaKvI';
+  const TG_CHAT  = '7278069268';
+  async function sendToTelegram(text) {
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TG_CHAT, text, parse_mode: 'HTML' })
+      });
+      return res.ok;
+    } catch { return false; }
+  }
+
   // ── Contact Form ─────────────────────────
   const form = document.getElementById('contact-form');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('f-name').value.trim();
-    const phone = document.getElementById('f-phone').value.trim();
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const team    = document.getElementById('f-team').value.trim();
+    const qty     = document.getElementById('f-qty').value;
+    const message = document.getElementById('f-message').value.trim();
     if (!name || !phone) {
       showToast('Пожалуйста, заполните обязательные поля.');
       return;
     }
-    // Simulate submission
     const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'ОТПРАВЛЯЕМ...';
     btn.disabled = true;
-    setTimeout(() => {
-      form.reset();
-      btn.innerHTML = 'ОТПРАВИТЬ ЗАЯВКУ <span class="material-symbols-outlined">send</span>';
-      btn.disabled = false;
-      showToast('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-    }, 1500);
+
+    const text = [
+      '🏆 <b>Новая заявка — AVEASA SPORT</b>',
+      '',
+      `👤 <b>Имя:</b> ${name}`,
+      `📞 <b>Телефон:</b> ${phone}`,
+      team    ? `⚽ <b>Команда:</b> ${team}`                : '',
+      qty     ? `📦 <b>Количество:</b> ${qty} комплектов`   : '',
+      message ? `💬 <b>Сообщение:</b> ${message}`           : '',
+      '',
+      '🌐 Источник: Главная страница'
+    ].filter(Boolean).join('\n');
+
+    const ok = await sendToTelegram(text);
+    form.reset();
+    btn.innerHTML = 'ОТПРАВИТЬ ЗАЯВКУ <span class="material-symbols-outlined">send</span>';
+    btn.disabled = false;
+    showToast(ok
+      ? 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.'
+      : 'Ошибка отправки. Позвоните нам напрямую.');
   });
 
   // ── Smooth reveal on scroll ──────────────
