@@ -237,10 +237,10 @@
 
       <!-- Background -->
       <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40 z-10"></div>
-        <video autoplay muted loop playsinline
+        <div class="absolute inset-0 bg-black/10 z-10"></div>
+        <video id="hero-video" autoplay muted loop playsinline webkit-playsinline
                class="absolute inset-0 w-full h-full object-cover"
-               style="pointer-events:none;">
+               style="pointer-events:none; -webkit-transform: translateZ(0); transform: translateZ(0);">
           <source src="img/hero-video.mp4" type="video/mp4">
         </video>
       </div>
@@ -1178,6 +1178,33 @@
       }
     });
   });
+</script>
+
+<script>
+  /* Force video autoplay on mobile (iOS Safari fix) */
+  (function() {
+    var video = document.getElementById('hero-video');
+    if (!video) return;
+
+    function tryPlay() {
+      var p = video.play();
+      if (p !== undefined) {
+        p.catch(function() {
+          // If autoplay blocked, retry on first user interaction
+          document.addEventListener('touchstart', function handler() {
+            video.play();
+            document.removeEventListener('touchstart', handler);
+          }, { once: true });
+        });
+      }
+    }
+
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener('loadeddata', tryPlay);
+    }
+  })();
 </script>
 
 </body>
